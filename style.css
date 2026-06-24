@@ -1,0 +1,373 @@
+/* ==========================================================================
+   1. VARIÁVEIS DE COR (Gerenciamento de Tema Claro/Escuro)
+   ========================================================================== */
+:root {
+    --bg-color: #ffffff;
+    --text-color: #333333;
+    --header-bg: #f4f4f4;
+    --accent-color: #007acc;
+    --menu-mobile-bg: #eeeeee;
+}
+
+/* Cores aplicadas quando o body tiver a classe .dark-theme */
+body.dark-theme {
+    --bg-color: #121212;
+    --text-color: #e0e0e0;
+    --header-bg: #1e1e1e;
+    --accent-color: #3792cb;
+    --menu-mobile-bg: #2a2a2a;
+}
+
+/* ==========================================================================
+   2. ESTILOS GERAIS
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: var(--header-bg);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+/* ==========================================================================
+   3. MENU RESPONSIVO (MOBILE FIRST)
+   ========================================================================== */
+.menu-toggle {
+    display: block; /* Visível no mobile */
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+.nav-menu {
+    display: none; /* Escondido por padrão no mobile */
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: var(--menu-mobile-bg);
+    padding: 1rem;
+    gap: 1rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* Classe que o JavaScript vai injetar para abrir o menu */
+.nav-menu.active {
+    display: flex;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 500;
+    padding: 0.5rem 0;
+}
+
+.nav-menu a.active {
+    color: var(--accent-color);
+    border-bottom: 2px solid var(--accent-color);
+}
+
+.theme-btn {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
+
+.content {
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* ==========================================================================
+   4. MEDIA QUERIES (Telas Maiores / Desktop)
+   ========================================================================== */
+@media (min-width: 768px) {
+    .menu-toggle {
+        display: none; /* Esconde o botão hambúrguer no PC */
+    }
+
+    .nav-menu {
+        display: flex; /* Mostra o menu horizontalmente */
+        flex-direction: row;
+        position: static;
+        width: auto;
+        background: none;
+        box-shadow: none;
+        padding: 0;
+        align-items: center;
+        gap: 1.5rem;
+    }
+}
+/* ==========================================================================
+   5. ESTILOS DO FORMULÁRIO DE CONTATO
+   ========================================================================== */
+.contact-section {
+    background-color: var(--header-bg);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    margin-top: 2rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    font-weight: bold;
+}
+
+.form-group input, 
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-size: 1rem;
+}
+
+.submit-btn {
+    background-color: var(--accent-color);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    width: 100%;
+    font-weight: bold;
+}
+
+.submit-btn:hover {
+    opacity: 0.9;
+}
+
+/* Estilos das Mensagens de Confirmação Dinâmicas */
+.feedback-message {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    border-radius: 4px;
+    display: none; /* Escondido por padrão */
+    font-weight: bold;
+    text-align: center;
+}
+
+.feedback-message.success {
+    display: block;
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.feedback-message.error {
+    display: block;
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+/* ==========================================================================
+   6. SEÇÃO DE PORTFÓLIO (CARDS DE PROJETOS)
+   ========================================================================== */
+.subtitle {
+    margin-bottom: 2rem;
+    color: var(--text-color);
+    opacity: 0.8;
+}
+
+/* Container que organiza os cards */
+.projects-grid {
+    display: flex;
+    flex-wrap: wrap; /* Permite que os cards pulem para a linha de baixo */
+    gap: 1.5rem; /* Espaçamento entre os cards */
+    justify-content: center;
+}
+
+/* Estilo individual de cada Card (Pensado para celular primeiro) */
+.project-card {
+    background-color: var(--header-bg);
+    border-radius: 8px;
+    overflow: hidden;
+    width: 100%; /* No mobile ocupa a tela toda */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.project-info {
+    padding: 1.5rem;
+}
+
+.project-info h3 {
+    margin-bottom: 0.5rem;
+    color: var(--accent-color);
+}
+
+.project-info p {
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+}
+
+/* Tag de tecnologia usada no projeto */
+.tech-badge {
+    display: inline-block;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    border: 1px solid var(--text-color);
+}
+
+/* Ajuste fino na Media Query já existente para telas maiores (Desktop) */
+@media (min-width: 768px) {
+    /* Faz os cards ficarem lado a lado dividindo o espaço no PC */
+    .project-card {
+        width: calc(50% - 1rem); /* 2 cards por linha no tablet/PC pequeno */
+    }
+}
+
+@media (min-width: 1024px) {
+    .project-card {
+        width: calc(33.333% - 1rem); /* 3 cards por linha em monitores grandes */
+    }
+}
+/* ==========================================================================
+   7. SEÇÃO DE FORMAÇÃO (LINHA DO TEMPO)
+   ========================================================================== */
+.timeline {
+    position: relative;
+    border-left: 3px solid var(--accent-color); /* A linha vertical guia */
+    padding: 1rem 0 1rem 1.5rem;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Cada bloco de formação */
+.timeline-item {
+    position: relative;
+}
+
+/* A bolinha indicadora na linha do tempo */
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -1.95rem; /* Ajuste exato para ficar sobre a linha horizontal */
+    top: 5px;
+    background-color: var(--bg-color);
+    border: 3px solid var(--accent-color);
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    z-index: 10;
+}
+
+.timeline-date {
+    font-weight: bold;
+    color: var(--accent-color);
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+}
+
+.timeline-body {
+    background-color: var(--header-bg);
+    padding: 1.2rem;
+    border-radius: 6px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.timeline-body h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.2rem;
+}
+
+.timeline-body h4 {
+    font-size: 0.95rem;
+    font-weight: normal;
+    opacity: 0.8;
+    margin-bottom: 0.8rem;
+}
+
+.timeline-body p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+/* Estilo para a imagem do projeto (Garante responsividade dentro do card) */
+.project-image {
+    width: 100%;
+    height: 180px; /* Altura fixa para manter todos os cards simétricos */
+    object-fit: cover; /* Corta/ajusta a imagem sem distorcer ou esticar */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Espaçamento e organização dos botões/links */
+.project-links {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 0.8rem;
+}
+
+/* Estilo geral dos botões do card */
+.btn-link {
+    flex: 1; /* Faz os dois botões dividirem o espaço igualmente */
+    text-align: center;
+    text-decoration: none;
+    padding: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border-radius: 4px;
+    transition: opacity 0.2s;
+}
+
+.btn-link:hover {
+    opacity: 0.8;
+}
+
+/* Cores específicas para cada tipo de botão */
+.btn-link.preview {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.btn-link.github {
+    background-color: transparent;
+    color: var(--text-color);
+    border: 1px solid var(--text-color);
+}

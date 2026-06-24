@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio | Contato</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">Meu Portfólio</div>
+        <button class="menu-toggle" id="menuToggle" aria-label="Abrir Menu">☰</button>
+        <nav class="nav-menu" id="navMenu">
+            <a href="index.html">Sobre Mim</a>
+            <a href="formacao.html">Formação</a>
+            <a href="portfolio.html">Portfólio</a>
+            <a href="contato.html" class="active">Contato</a>
+            <button id="themeToggle" class="theme-btn">🌓 Alternar Tema</button>
+        </nav>
+    </header>
+
+    <main class="content">
+        <section class="contact-section">
+            <h1>Entre em Contato</h1>
+            <p>Preencha o formulário abaixo para me enviar uma mensagem.</p>
+
+            <div id="feedbackMessage" class="feedback-message"></div>
+
+            <form id="contactForm" novalidate>
+                <div class="form-group">
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nome" name="nome" required placeholder="Digite seu nome completo">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">E-mail:</label>
+                    <input type="email" id="email" name="email" required placeholder="seu.email@exemplo.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="mensagem">Mensagem:</label>
+                    <textarea id="mensagem" name="mensagem" rows="5" required placeholder="Digite sua mensagem aqui..."></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Enviar Mensagem</button>
+            </form>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
